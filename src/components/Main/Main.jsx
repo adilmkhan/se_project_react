@@ -1,9 +1,9 @@
-import WeatherCard from "../WeatherCard/WeatherCard";
+import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 
 function Main() {
   return (
     <main>
-      <WeatherCard />;
+      <WeatherCard />
       <section className="cards">
         <p className="cards__text">
           Today is 75 &deg; F / You may want to wear:
