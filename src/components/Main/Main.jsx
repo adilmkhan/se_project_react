@@ -1,14 +1,23 @@
 import WeatherCard from "../WeatherCard/WeatherCard.jsx";
+import ItemCard from "../ItemCard/ItemCard.jsx";
+import { defaultClothingItems } from "../../utils/constants.js";
+import "./Main.css";
 
-function Main() {
+function Main({ weatherData }) {
   return (
     <main>
       <WeatherCard />
+      <p className="card-text">Today is 75 &deg; F / You may want to wear:</p>
       <section className="cards">
-        <p className="cards__text">
-          Today is 75 &deg; F / You may want to wear:
-        </p>
-        {/* TODO-Cards */}
+        <ul className="cards__list">
+          {defaultClothingItems
+            .filter((item) => {
+              return item.weather === weatherData.type;
+            })
+            .map((item) => {
+              return <ItemCard key={item.key} item={item} />;
+            })}
+        </ul>
       </section>
     </main>
   );
