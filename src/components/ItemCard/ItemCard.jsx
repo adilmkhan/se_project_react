@@ -1,10 +1,17 @@
 import "./ItemCard.css";
 
-function ItemCard({ item }) {
+function ItemCard({ item, onCardClick }) {
   return (
     <li className="cards__item">
       <h2 className="cards__image-description">{item.name}</h2>
-      <img src={item.link} className="cards__image" alt="cards_image" />
+      <img
+        onClick={() => {
+          onCardClick(item);
+        }}
+        src={item.link}
+        className="cards__image"
+        alt={item.name}
+      />
     </li>
   );
 }

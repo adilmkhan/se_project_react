@@ -68,34 +68,8 @@
   margin: 0;
   background-color: #fff;
   cursor: pointer;
-  /* transition: background-image 1s linear; */
+  transition: background-image 1s linear;
 }
-
-/* .modal__image-container {
-  position: relative;
-} */
-
-/* .modal__image {
-  max-width: 80vw;
-  max-height: 80vh;
-  object-fit: contain;
-  display: block;
-  border-radius: 8px;
-  width: 100%;
-} */
-
-/* .modal__caption {
-  color: white;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 120%;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  display: inline-block;
-  background-color: black;
-  margin: 8px 0;
-  padding: 4px 8px;
-  border-radius: 8px;
-} */
 
 .modal__form {
   height: 100%;
@@ -117,12 +91,12 @@
   background-image: url(../images/close-btn-hover.svg);
 } */
 
-.modal__button-close:hover {
+/* .modal__button-close:hover {
   background-image: url(../../assets/close-button.png);
-}
+} */
 
 .modal__form-label {
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-family: Cabinet Grotesk;
   font-weight: 500;
   font-size: 16px;
   margin: 32px 0 0;
@@ -147,7 +121,7 @@
 }
 
 .modal__form-input::placeholder {
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-family: Cabinet Grotesk;
   font-weight: 500;
   font-size: 20px;
   line-height: 100%;
@@ -161,7 +135,7 @@
   border-radius: 8px;
   /* padding: 18px 58px; */
   color: #fcf5e5;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-family: Cabinet Grotesk;
   font-weight: 500;
   font-size: 16px;
   line-height: 100%;
