@@ -8,8 +8,8 @@ function ModalWithForm({
   handleCloseClick,
 }) {
   return (
-    <div class={`modal ${activeModal === "add-garment" && "modal_opened"}`}>
-      <div class="modal__container">
+    <div className={`modal ${activeModal === "add-garment" && "modal_opened"}`}>
+      <div className="modal__container">
         <button
           onClick={handleCloseClick}
           type="button"
