@@ -8,11 +8,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+  visibility: hidden;
+}
+
+.modal_opened {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
 }
 
 .modal__radio-buttons {
   display: flex;
   flex-direction: column;
+  border: 0;
+  margin-top: 24px;
+  padding: 0;
 }
 
 .modal__label-type-radio {
@@ -26,11 +37,38 @@
 .modal__container {
   display: flex;
   align-items: center;
+  flex-direction: column;
   background-color: #fff;
   max-width: 730px;
   width: 100%;
   position: relative;
   border-radius: 8px;
+}
+
+.modal__form-title {
+  font-family: Cabinet Grotesk;
+  margin: 28px auto 0 28px;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 16px;
+  /* leading-trim: NONE; */
+  line-height: 20px;
+  /* letter-spacing: 0%; */
+}
+
+.modal__button-close {
+  background-image: url(../../assets/close-button.png);
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 20px;
+  right: 28px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  cursor: pointer;
+  /* transition: background-image 1s linear; */
 }
 
 /* .modal__image-container {
@@ -63,24 +101,9 @@
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  padding: 32px 50px;
+  padding: 20px 28px;
   display: flex;
   flex-direction: column;
-}
-
-.modal__button-close {
-  background-image: url(../images/close_button_new.svg);
-  position: absolute;
-  height: 40px;
-  width: 40px;
-  top: 32px;
-  right: 50px;
-  border: none;
-  padding: 0;
-  margin: 0;
-  background-color: #fff;
-  cursor: pointer;
-  transition: background-image 1s linear;
 }
 
 /* .modal__button-close_type_preview {
@@ -95,15 +118,7 @@
 } */
 
 .modal__button-close:hover {
-  background-image: url(../images/close_hover.svg);
-}
-
-.modal__form-title {
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  font-size: 32px;
-  margin: 0;
-  line-height: 40px;
+  background-image: url(../../assets/close-button.png);
 }
 
 .modal__form-label {
@@ -140,11 +155,11 @@
 }
 
 .modal__button-save {
-  width: 156px;
-  height: 52px;
+  width: 124px;
+  height: 36px;
   background-color: rgba(33, 33, 33, 1);
   border-radius: 8px;
-  padding: 18px 58px;
+  /* padding: 18px 58px; */
   color: #fcf5e5;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 500;
