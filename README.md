@@ -69,4 +69,4 @@ A React-based clothing suggestion application that displays weather information 
 - User profiles
 - Toggle between Fahrenheit and Celsius
 
-### Click **[here]()** to view the webpage on Github.
+### Click **[here](https://adilmkhan.github.io/se_project_react/)** to view the webpage on Github.
