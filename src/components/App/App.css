@@ -6,4 +6,13 @@
   max-width: 1360px;
   margin: 0 auto;
   padding: 0 20px;
+  font-family: Cabinet Grotesk;
+}
+
+.modal__form-label.modal__label-type-radio {
+  margin-top: 8px;
+}
+
+.modal__form-label.modal__label-type-radio:first-child {
+  margin-top: 12px;
 }

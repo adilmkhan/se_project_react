@@ -97,4 +97,11 @@ const defaultClothingItems = [
   },
 ];
 
-export { defaultClothingItems };
+const coordinates = {
+  latitude: 38.267769,
+  longitude: -90.571911,
+};
+
+const APIkey = "08ccf02aa437ffd6295bc131e2e9406e";
+
+export { defaultClothingItems, coordinates, APIkey };
