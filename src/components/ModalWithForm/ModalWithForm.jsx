@@ -4,11 +4,11 @@ function ModalWithForm({
   children,
   buttonText,
   title,
-  activeModal,
+  isOpen,
   handleCloseClick,
 }) {
   return (
-    <div className={`modal ${activeModal === "add-garment" && "modal_opened"}`}>
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__container">
         <button
           onClick={handleCloseClick}
@@ -17,9 +17,9 @@ function ModalWithForm({
           aria-label="Close modal"
         ></button>
         <h2 className="modal__form-title">{title}</h2>
-        <form class="modal__form">
+        <form className="modal__form">
           {children}
-          <button type="submit" class="modal__button modal__button-save">
+          <button type="submit" className="modal__button modal__button-save">
             {buttonText}
           </button>
         </form>

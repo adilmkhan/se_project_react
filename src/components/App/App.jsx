@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { coordinates, APIkey } from "../../utils/constants.js";
+import {
+  defaultClothingItems,
+  coordinates,
+  APIkey,
+} from "../../utils/constants.js";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
@@ -16,6 +20,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -43,13 +48,17 @@ function App() {
     <div className="page">
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Main
+          weatherData={weatherData}
+          clothingItems={clothingItems}
+          handleCardClick={handleCardClick}
+        />
         <Footer />
       </div>
       <ModalWithForm
         title="New garment"
         buttonText="Add garment"
-        activeModal={activeModal}
+        isOpen={activeModal === "add-garment"}
         handleCloseClick={closeActiveModal}
       >
         <label htmlFor="name" className="modal__form-label">
@@ -86,6 +95,7 @@ function App() {
               type="radio"
               className="modal__radio-input"
               id="hot"
+              value="hot"
               name="weather-type"
             />{" "}
             Hot
@@ -98,6 +108,7 @@ function App() {
               type="radio"
               className="modal__radio-input"
               id="warm"
+              value="warm"
               name="weather-type"
             />{" "}
             Warm
@@ -110,6 +121,7 @@ function App() {
               type="radio"
               className="modal__radio-input"
               id="cold"
+              value="cold"
               name="weather-type"
             />{" "}
             Cold
@@ -117,7 +129,7 @@ function App() {
         </fieldset>
       </ModalWithForm>
       <ItemModal
-        activeModal={activeModal}
+        isOpen={activeModal === "preview"}
         card={selectedCard}
         handleCloseClick={closeActiveModal}
       />
