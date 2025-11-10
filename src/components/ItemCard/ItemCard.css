@@ -15,8 +15,9 @@
 
 .cards__image-description {
   position: absolute;
+  background-color: rgba(255, 255, 255, 1);
   margin: 0;
-  color: black;
+  color: rgba(0, 0, 0, 0.6);
   top: 15px;
   left: 125px;
   overflow: hidden;
@@ -25,4 +26,6 @@
   font-size: 16px;
   line-height: 20px;
   white-space: nowrap;
+  border-radius: 4px;
+  padding: 2px 12px;
 }

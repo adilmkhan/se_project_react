@@ -51,13 +51,11 @@
   font-weight: 700;
   font-style: Bold;
   font-size: 16px;
-  /* leading-trim: NONE; */
   line-height: 20px;
-  /* letter-spacing: 0%; */
 }
 
 .modal__button-close {
-  background-image: url(../../assets/close-button.png);
+  background-image: url(../../assets/grp-119.png);
   position: absolute;
   height: 20px;
   width: 20px;
@@ -66,7 +64,22 @@
   border: none;
   padding: 0;
   margin: 0;
-  background-color: #fff;
+  background-color: unset;
+  cursor: pointer;
+  transition: background-image 1s linear;
+}
+
+.modal__button-close_add {
+  background-image: url(../../assets/Grp_120.png);
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 20px;
+  right: 28px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: unset;
   cursor: pointer;
   transition: background-image 1s linear;
 }

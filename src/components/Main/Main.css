@@ -12,3 +12,9 @@
   margin: 0;
   display: contents;
 }
+.card-text {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+}
