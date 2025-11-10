@@ -71,8 +71,8 @@ function App() {
           name="name"
           placeholder="Name"
           required
-          minlength="2"
-          maxlength="30"
+          minLength="2"
+          maxLength="30"
         />
         <label htmlFor="imageURL" className="modal__form-label">
           Image{" "}
