@@ -22,7 +22,7 @@
   border: 0;
   text-align: center;
   line-height: 28px;
-  color: rgba(255, 255, 255, 1);
+  color: grey;
 }
 
 .toggle-switch__c {
@@ -50,4 +50,8 @@
 
 .toggle-switch__checkbox:checked ~ .toggle-switch__circle {
   left: 28px;
+}
+
+.toggle-switch__text_color_white {
+  color: white;
 }
