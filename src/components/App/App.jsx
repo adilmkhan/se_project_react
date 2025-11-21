@@ -11,6 +11,7 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer.jsx";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
+// import "../ModalWithForm/ModalWithForm.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
+
+  const onAddItem = (data) => {};
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -75,6 +78,7 @@ function App() {
         <AddItemModal
           isOpen={activeModal === "add-garment"}
           handleCloseClick={closeActiveModal}
+          onAddItem={onAddItem}
         />
         <ItemModal
           isOpen={activeModal === "preview"}
