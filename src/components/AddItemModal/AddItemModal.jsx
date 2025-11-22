@@ -11,6 +11,7 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseClick }) => {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    onAddItem(values);
   }
   return (
     <ModalWithForm

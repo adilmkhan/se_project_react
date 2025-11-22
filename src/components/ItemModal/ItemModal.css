@@ -4,15 +4,16 @@
   height: 610px;
   background-color: #fff;
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .modal__image {
-  max-width: 80vw;
-  max-height: 80vh;
-  object-fit: contain;
+  width: 498px;
+  height: 498px;
+  object-fit: cover;
   display: block;
   border-radius: 12px;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .modal__caption {

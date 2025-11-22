@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./App.css";
 import {
@@ -8,10 +9,10 @@ import {
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
+import Profile from "../Profile/Profile.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer.jsx";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
-// import "../ModalWithForm/ModalWithForm.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 
 function App() {
@@ -36,7 +37,21 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (data) => {};
+  const onAddItem = (inputValues) => {
+    // Call the fetch function
+    // .then((data)=> {}) includes all the stuff below
+    const newCardData = {
+      _id: Date.now(), // Temporary fix
+      name: inputValues.name,
+      link: inputValues.imageLink,
+      weather: inputValues.weatherType,
+    };
+    // Don't use newCardData
+    // The ID will be inlcuded in the response data
+    setClothingItems([...clothingItems, newCardData]);
+    closeActiveModal();
+    // .catch()
+  };
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -68,11 +83,20 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main
-            weatherData={weatherData}
-            clothingItems={clothingItems}
-            handleCardClick={handleCardClick}
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  clothingItems={clothingItems}
+                  handleCardClick={handleCardClick}
+                />
+              }
+            />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+
           <Footer />
         </div>
         <AddItemModal
