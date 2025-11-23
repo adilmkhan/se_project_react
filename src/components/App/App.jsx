@@ -94,6 +94,7 @@ function App() {
         weatherData,
         clothingItems,
         handleCardClick,
+        handleAddClick,
       }}
     >
       <div className="page">

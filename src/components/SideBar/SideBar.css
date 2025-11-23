@@ -1,0 +1,15 @@
+.sidebar__profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar__username {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 100%;
+  color: rgba(0, 0, 0, 1);
+  margin: 0;
+}

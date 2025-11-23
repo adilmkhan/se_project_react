@@ -4,14 +4,16 @@ import { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 
 export default function ClothesSection() {
-  const { weatherData, clothingItems, handleCardClick } = useContext(
+  const { handleAddClick, clothingItems, handleCardClick } = useContext(
     CurrentTemperatureUnitContext
   );
   return (
     <div className="clothessection">
-      <div>
-        <p>Text</p>
-        <button>Button</button>
+      <div className="clothessection__content">
+        <p className="clothessection__title">Your items</p>
+        <button onClick={handleAddClick} className="clothessection__button">
+          + Add new
+        </button>
       </div>
       <div className="clothes">
         <ul className="clothes__list">
