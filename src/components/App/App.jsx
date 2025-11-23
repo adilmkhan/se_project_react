@@ -45,7 +45,7 @@ function App() {
       baseUrl
     )
       .then((data) => {
-        setClothingItems([...clothingItems, data]);
+        setClothingItems((prev) => [data, ...prev]);
         closeActiveModal();
       })
       .catch(console.error);
