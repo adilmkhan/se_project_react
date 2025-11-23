@@ -8,7 +8,7 @@ function ItemCard({ item, onCardClick }) {
         onClick={() => {
           onCardClick(item);
         }}
-        src={item.link}
+        src={item.imageUrl}
         className="cards__image"
         alt={item.name}
       />
