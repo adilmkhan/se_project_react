@@ -23,7 +23,7 @@ const RegisterModal = ({ isOpen, onSignup, handleCloseClick }) => {
       onSubmit={handleSignup}
       buttonText="Next"
     >
-      <label htmlFor="name" className="modal__form-label">
+      <label htmlFor="email" className="modal__form-label">
         Email{" "}
       </label>
       <input

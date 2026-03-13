@@ -60,6 +60,7 @@ function App() {
   const baseUrl = "http://localhost:3001";
 
   const onAddItem = (inputValues) => {
+    const jwt = getToken();
     addNewCard(
       {
         name: inputValues.name,
@@ -67,6 +68,7 @@ function App() {
         weather: inputValues.weatherType,
       },
       baseUrl,
+      jwt,
     )
       .then((data) => {
         setClothingItems((prev) => [data, ...prev]);
@@ -76,7 +78,8 @@ function App() {
   };
 
   const onRemoveItem = (inputItems) => {
-    deleteCard({ baseUrl, id: inputItems._id })
+    const jwt = getToken();
+    deleteCard({ baseUrl, jwt, id: inputItems._id })
       .then(() => {
         //TODO
         setClothingItems(
@@ -122,14 +125,14 @@ function App() {
   };
 
   const handleLogin = (loginValues) => {
-    if (!loginValues.name || !loginValues.password) {
+    if (!loginValues.email || !loginValues.password) {
       return;
     }
 
     auth
       .authorize(
         {
-          name: loginValues.name,
+          email: loginValues.email,
           password: loginValues.password,
         },
         baseUrl,
@@ -159,7 +162,6 @@ function App() {
       })
       .catch(console.error);
     const jwt = getToken();
-
     if (!jwt) {
       return;
     }

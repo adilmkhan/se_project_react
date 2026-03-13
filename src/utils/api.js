@@ -7,12 +7,14 @@ export const getCards = (baseUrl) => {
   });
 };
 
-export const addNewCard = ({ name, imageUrl, weather }, baseUrl) => {
+export const addNewCard = ({ name, imageUrl, weather }, baseUrl, token) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     // headers
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     // Send the data in the body as a JSON string.
     body: JSON.stringify({
@@ -28,9 +30,12 @@ export const addNewCard = ({ name, imageUrl, weather }, baseUrl) => {
   });
 };
 
-export const deleteCard = ({ baseUrl, id }) => {
+export const deleteCard = ({ baseUrl, token, id }) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   }).then((res) => {
     if (res.ok) {
       return res.json();
