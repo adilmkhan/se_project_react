@@ -39,3 +39,16 @@ export const deleteCard = ({ baseUrl, id }) => {
     return Promise.reject(`Error: ${res.status}`);
   });
 };
+
+export const getCurrentUser = (baseUrl, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
+};

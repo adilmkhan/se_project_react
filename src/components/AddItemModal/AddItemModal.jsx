@@ -20,6 +20,7 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseClick }) => {
       isOpen={isOpen}
       handleCloseClick={handleCloseClick}
       onSubmit={handleSubmit}
+      buttonText="Save"
     >
       <label htmlFor="name" className="modal__form-label">
         Name{" "}

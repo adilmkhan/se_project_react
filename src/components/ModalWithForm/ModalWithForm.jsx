@@ -1,7 +1,7 @@
 import "./ModalWithForm.css";
 
 function ModalWithForm({
-  buttonText = "Save",
+  buttonText,
   title,
   name,
   isOpen,
