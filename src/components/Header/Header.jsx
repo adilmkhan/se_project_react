@@ -3,8 +3,17 @@ import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({
+  handleAddClick,
+  weatherData,
+  handleRegisterClick,
+  handleLoginClick,
+}) {
+  const { isLoggedIn, currentUser } = useContext(CurrentTemperatureUnitContext);
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -18,22 +27,48 @@ function Header({ handleAddClick, weatherData }) {
         {currentDate}, {weatherData.city}
       </p>
       <ToggleSwitch />
-      <button
-        onClick={handleAddClick}
-        type="button"
-        className="header__add-clothes-btn"
-      >
-        + Add Clothes
-      </button>
-      <div className="header__user-container">
-        <NavLink to="/profile" className="header__username">
-          {" "}
-          Terrence Tegegne
-        </NavLink>
-        <NavLink to="/profile">
-          <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
-        </NavLink>
-      </div>
+      {isLoggedIn ? (
+        //Authorized
+        <>
+          <button
+            onClick={handleAddClick}
+            type="button"
+            className="header__add-clothes-btn"
+          >
+            + Add Clothes
+          </button>
+          <div className="header__user-container">
+            <NavLink to="/profile" className="header__username">
+              {currentUser.name}
+            </NavLink>
+            <NavLink to="/profile">
+              <img
+                src={currentUser.avatar || avatar}
+                alt={currentUser.name}
+                className="header__avatar"
+              />
+            </NavLink>
+          </div>
+        </>
+      ) : (
+        // Non-authorized user view
+        <div className="header__auth-container">
+          <button
+            onClick={handleRegisterClick}
+            type="button"
+            className="header__register-btn"
+          >
+            Sign Up
+          </button>
+          <button
+            onClick={handleLoginClick}
+            type="button"
+            className="header__login-btn"
+          >
+            Log In
+          </button>
+        </div>
+      )}
     </header>
   );
 }

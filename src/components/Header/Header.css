@@ -37,3 +37,25 @@
   color: black;
   text-decoration: none;
 }
+
+.header__auth-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header__register-btn,
+.header__login-btn {
+  background-color: unset;
+  font-family: Cabinet Grotesk;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.header__register-btn:hover,
+.header__login-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
