@@ -26,6 +26,7 @@ import {
 } from "../../utils/api.js";
 import * as auth from "../../utils/auth.js";
 import { setToken, getToken } from "../../utils/token.js";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -118,8 +119,30 @@ function App() {
         },
         baseUrl,
       )
-      .then(() => {
-        navigate("/login");
+      .then((authData) => {
+        auth
+          .authorize(
+            {
+              email: authData.email,
+              password: authData.password,
+            },
+            baseUrl,
+          )
+          .then((data) => {
+            if (data.token) {
+              setToken(data.token);
+              setIsLoggedIn(true);
+              closeActiveModal();
+              // Fetch current user data using the token
+              getCurrentUser(baseUrl, data.token)
+                .then(({ _id, name, avatar }) => {
+                  setCurrentUser({ _id, name, avatar });
+                  navigate("/profile");
+                })
+                .catch(console.error);
+            }
+          })
+          .catch(console.error);
       })
       .catch(console.error);
   };
@@ -138,12 +161,18 @@ function App() {
         baseUrl,
       )
       .then((data) => {
-        if (data.jwt) {
-          setToken(data.jwt);
-          setCurrentUser(data.user);
+        if (data.token) {
+          setToken(data.token);
           setIsLoggedIn(true);
-          const redirectPath = location.state?.from?.pathname || "/profile";
-          navigate(redirectPath);
+          closeActiveModal();
+          // Fetch current user data using the token
+          getCurrentUser(baseUrl, data.token)
+            .then(({ _id, name, avatar }) => {
+              setCurrentUser({ _id, name, avatar });
+              const redirectPath = location.state?.from?.pathname || "/profile";
+              navigate(redirectPath);
+            })
+            .catch(console.error);
         }
       })
       .catch(console.error);
@@ -200,7 +229,14 @@ function App() {
                 />
               }
             />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
 
           <Footer />
