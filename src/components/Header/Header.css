@@ -38,6 +38,26 @@
   text-decoration: none;
 }
 
+.header__avatar {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  color: black;
+}
+
+.header__avatar-fallback {
+  background-color: unset;
+  font-family: Cabinet Grotesk;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  color: black;
+}
+
 .header__auth-container {
   display: flex;
   gap: 20px;

@@ -1,6 +1,5 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
@@ -13,6 +12,8 @@ function Header({
   handleLoginClick,
 }) {
   const { isLoggedIn, currentUser } = useContext(CurrentTemperatureUnitContext);
+
+  const firstInitial = currentUser.name.split("")[0];
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -42,11 +43,19 @@ function Header({
               {currentUser.name}
             </NavLink>
             <NavLink to="/profile">
-              <img
-                src={currentUser.avatar || avatar}
-                alt={currentUser.name}
-                className="header__avatar"
-              />
+              {currentUser.avatar ? (
+                <>
+                  <img
+                    src={currentUser.avatar}
+                    alt={currentUser.name}
+                    className="header__avatar"
+                  />
+                </>
+              ) : (
+                <button type="button" className="header__avatar-fallback">
+                  {firstInitial}
+                </button>
+              )}
             </NavLink>
           </div>
         </>
