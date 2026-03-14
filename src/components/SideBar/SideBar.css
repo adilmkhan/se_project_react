@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 24px;
 }
 
 .sidebar__username {
@@ -12,4 +13,23 @@
   line-height: 100%;
   color: rgba(0, 0, 0, 1);
   margin: 0;
+}
+
+.sidebar__buttons {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar__button {
+  background-color: unset;
+  font-family: Cabinet Grotesk;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 100%;
+  padding: 0;
+  color: black;
 }

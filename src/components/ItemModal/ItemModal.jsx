@@ -1,6 +1,12 @@
 import "./ItemModal.css";
+import { useContext } from "react";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 function ItemModal({ isOpen, handleCloseClick, card, onRemoveItem }) {
+  const { currentUser } = useContext(CurrentTemperatureUnitContext);
+
+  const isOwn = card.owner === currentUser._id;
+
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__image-container">
@@ -18,7 +24,7 @@ function ItemModal({ isOpen, handleCloseClick, card, onRemoveItem }) {
         <button
           onClick={() => onRemoveItem(card)}
           type="button"
-          className="modal__button-delete"
+          className={`modal__button-delete ${isOwn ? "modal__button-delete_opened" : ""}`}
           aria-label="delete card"
         >
           Delete item

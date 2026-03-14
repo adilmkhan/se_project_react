@@ -40,11 +40,12 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({
     _id: "",
-    name: "",
-    avatar: "",
+    name: "John Snow",
+    avatar:
+      "https://plus.unsplash.com/premium_photo-1658506764441-3b2167790507?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   });
 
   const navigate = useNavigate();
@@ -242,8 +243,17 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="*"
+              element={
+                isLoggedIn ? (
+                  <Navigate to="/profile" replace />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
           </Routes>
-
           <Footer />
         </div>
         <AddItemModal
