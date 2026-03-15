@@ -4,9 +4,8 @@ import { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 
 export default function ClothesSection() {
-  const { handleAddClick, clothingItems, handleCardClick } = useContext(
-    CurrentTemperatureUnitContext
-  );
+  const { handleAddClick, clothingItems, handleCardClick, currentUser } =
+    useContext(CurrentTemperatureUnitContext);
   return (
     <div className="clothessection">
       <div className="clothessection__content">
@@ -17,15 +16,19 @@ export default function ClothesSection() {
       </div>
       <div className="clothes">
         <ul className="clothes__list">
-          {clothingItems.map((item) => {
-            return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                onCardClick={handleCardClick}
-              />
-            );
-          })}
+          {clothingItems
+            .filter((item) => {
+              return item.owner === currentUser._id;
+            })
+            .map((item) => {
+              return (
+                <ItemCard
+                  key={item._id}
+                  item={item}
+                  onCardClick={handleCardClick}
+                />
+              );
+            })}
         </ul>
       </div>
     </div>

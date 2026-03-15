@@ -6,7 +6,7 @@ import { useContext } from "react";
 export default function SideBar() {
   const { currentUser } = useContext(CurrentTemperatureUnitContext);
 
-  const firstInitial = currentUser.name.split("")[0];
+  const firstInitial = currentUser?.name?.split("")[0] || "";
 
   return (
     <aside className="sidebar">

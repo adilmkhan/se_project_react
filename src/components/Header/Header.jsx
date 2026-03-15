@@ -13,7 +13,7 @@ function Header({
 }) {
   const { isLoggedIn, currentUser } = useContext(CurrentTemperatureUnitContext);
 
-  const firstInitial = currentUser.name.split("")[0];
+  const firstInitial = currentUser?.name?.split("")[0] || "";
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",

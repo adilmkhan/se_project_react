@@ -40,12 +40,11 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     _id: "",
-    name: "John Snow",
-    avatar:
-      "https://plus.unsplash.com/premium_photo-1658506764441-3b2167790507?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    name: "",
+    avatar: "",
   });
 
   const navigate = useNavigate();
@@ -124,8 +123,8 @@ function App() {
         auth
           .authorize(
             {
-              email: authData.email,
-              password: authData.password,
+              email: inputValues.email, //updated
+              password: inputValues.password, //updated
             },
             baseUrl,
           )
@@ -136,7 +135,8 @@ function App() {
               closeActiveModal();
               // Fetch current user data using the token
               getCurrentUser(baseUrl, data.token)
-                .then(({ _id, name, avatar }) => {
+                .then((response) => {
+                  const { _id, name, avatar } = response.data;
                   setCurrentUser({ _id, name, avatar });
                   navigate("/profile");
                 })
@@ -168,7 +168,8 @@ function App() {
           closeActiveModal();
           // Fetch current user data using the token
           getCurrentUser(baseUrl, data.token)
-            .then(({ _id, name, avatar }) => {
+            .then((response) => {
+              const { _id, name, avatar } = response.data;
               setCurrentUser({ _id, name, avatar });
               const redirectPath = location.state?.from?.pathname || "/profile";
               navigate(redirectPath);
@@ -188,7 +189,7 @@ function App() {
       .catch(console.error);
     getCards(baseUrl)
       .then((items) => {
-        setClothingItems(items);
+        setClothingItems(items.data); //updated
       })
       .catch(console.error);
     const jwt = getToken();
@@ -196,7 +197,8 @@ function App() {
       return;
     }
     getCurrentUser(baseUrl, jwt)
-      .then(({ _id, name, avatar }) => {
+      .then((response) => {
+        const { _id, name, avatar } = response.data;
         setIsLoggedIn(true);
         setCurrentUser({ _id, name, avatar });
       })
