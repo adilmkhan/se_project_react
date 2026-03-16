@@ -197,15 +197,11 @@ function App() {
       baseUrl,
       jwt,
     )
-      .then(() => {
+      .then((data) => {
+        const { _id, name, avatar } = data;
+        setCurrentUser({ _id, name, avatar });
         closeActiveModal();
-        getCurrentUser(baseUrl, jwt)
-          .then((response) => {
-            const { _id, name, avatar } = response.data;
-            setCurrentUser({ _id, name, avatar });
-            navigate("/profile");
-          })
-          .catch(console.error);
+        navigate("/profile");
       })
       .catch(console.error);
   };
