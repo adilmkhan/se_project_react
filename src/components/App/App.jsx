@@ -18,11 +18,13 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import {
   getCards,
   addNewCard,
   deleteCard,
   getCurrentUser,
+  editProfile,
 } from "../../utils/api.js";
 import * as auth from "../../utils/auth.js";
 import { setToken, getToken } from "../../utils/token.js";
@@ -108,6 +110,10 @@ function App() {
     setActiveModal("signin");
   };
 
+  const handleEditProfileClick = () => {
+    setActiveModal("edit");
+  };
+
   const handleRegister = (inputValues) => {
     auth
       .register(
@@ -180,6 +186,30 @@ function App() {
       .catch(console.error);
   };
 
+  const handleEditProfile = (editValues) => {
+    const jwt = getToken();
+
+    editProfile(
+      {
+        name: editValues.name,
+        avatar: editValues.avatarLink,
+      },
+      baseUrl,
+      jwt,
+    )
+      .then(() => {
+        closeActiveModal();
+        getCurrentUser(baseUrl, jwt)
+          .then((response) => {
+            const { _id, name, avatar } = response.data;
+            setCurrentUser({ _id, name, avatar });
+            navigate("/profile");
+          })
+          .catch(console.error);
+      })
+      .catch(console.error);
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -214,6 +244,7 @@ function App() {
         clothingItems,
         handleCardClick,
         handleAddClick,
+        handleEditProfileClick,
         isLoggedIn,
         currentUser,
       }}
@@ -278,6 +309,11 @@ function App() {
           isOpen={activeModal === "signin"}
           handleCloseClick={closeActiveModal}
           onSignin={handleLogin}
+        />
+        <EditProfileModal
+          isOpen={activeModal === "edit"}
+          handleCloseClick={closeActiveModal}
+          onEdit={handleEditProfile}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>

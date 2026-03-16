@@ -57,3 +57,25 @@ export const getCurrentUser = (baseUrl, token) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 };
+
+export const editProfile = ({ name, avatar }, baseUrl, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    // headers
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    // Send the data in the body as a JSON string.
+    body: JSON.stringify({
+      name,
+      avatar,
+    }),
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  });
+};

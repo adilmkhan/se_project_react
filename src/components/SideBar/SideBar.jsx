@@ -4,7 +4,9 @@ import "../Header/Header.css";
 import { useContext } from "react";
 
 export default function SideBar() {
-  const { currentUser } = useContext(CurrentTemperatureUnitContext);
+  const { currentUser, handleEditProfileClick } = useContext(
+    CurrentTemperatureUnitContext,
+  );
 
   const firstInitial = currentUser?.name?.split("")[0] || "";
 
@@ -27,7 +29,11 @@ export default function SideBar() {
         <p className="sidebar__username">{currentUser.name}</p>
       </div>
       <div className="sidebar__buttons">
-        <button type="button" className="sidebar__button sidebar__button-edit">
+        <button
+          onClick={handleEditProfileClick}
+          type="button"
+          className="sidebar__button sidebar__button-edit"
+        >
           Change profile data
         </button>
         <button
