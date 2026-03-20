@@ -1,12 +1,22 @@
 import "./SideBar.css";
+import { useNavigate } from "react-router-dom";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import "../Header/Header.css";
 import { useContext } from "react";
+import { removeToken } from "../../utils/token";
 
 export default function SideBar() {
-  const { currentUser, handleEditProfileClick } = useContext(
+  const { currentUser, handleEditProfileClick, setIsLoggedIn } = useContext(
     CurrentTemperatureUnitContext,
   );
+
+  const navigate = useNavigate();
+
+  function logOut() {
+    removeToken();
+    navigate("/");
+    setIsLoggedIn(false);
+  }
 
   const firstInitial = currentUser?.name?.split("")[0] || "";
 
@@ -37,6 +47,7 @@ export default function SideBar() {
           Change profile data
         </button>
         <button
+          onClick={logOut}
           type="button"
           className="sidebar__button sidebar__button-logout"
         >

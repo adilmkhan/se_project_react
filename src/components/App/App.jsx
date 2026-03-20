@@ -126,12 +126,13 @@ function App() {
         },
         baseUrl,
       )
-      .then((authData) => {
+      .then(() => {
         auth
           .authorize(
             {
-              email: inputValues.email, //updated
-              password: inputValues.password, //updated
+              email: inputValues.email,
+              password: inputValues.password,
+              updated,
             },
             baseUrl,
           )
@@ -140,7 +141,6 @@ function App() {
               setToken(data.token);
               setIsLoggedIn(true);
               closeActiveModal();
-              // Fetch current user data using the token
               getCurrentUser(baseUrl, data.token)
                 .then((response) => {
                   const { _id, name, avatar } = response.data;
@@ -173,7 +173,6 @@ function App() {
           setToken(data.token);
           setIsLoggedIn(true);
           closeActiveModal();
-          // Fetch current user data using the token
           getCurrentUser(baseUrl, data.token)
             .then((response) => {
               const { _id, name, avatar } = response.data;
@@ -209,20 +208,15 @@ function App() {
 
   const handleCardLike = ({ id, isLiked }) => {
     const jwt = getToken();
-    // Check if this card is not currently liked
     !isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-        // the first argument is the card's id
-        addCardLike(baseUrl, id, jwt)
+      ? addCardLike(baseUrl, id, jwt)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard.data : item)),
             );
           })
           .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        // the first argument is the card's id
-        removeCardLike(baseUrl, id, jwt)
+      : removeCardLike(baseUrl, id, jwt)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard.data : item)),
@@ -240,7 +234,7 @@ function App() {
       .catch(console.error);
     getCards(baseUrl)
       .then((items) => {
-        setClothingItems(items.data); //updated
+        setClothingItems(items.data);
       })
       .catch(console.error);
     const jwt = getToken();
@@ -267,6 +261,7 @@ function App() {
         handleAddClick,
         handleEditProfileClick,
         isLoggedIn,
+        setIsLoggedIn,
         currentUser,
       }}
     >

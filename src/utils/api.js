@@ -10,13 +10,11 @@ export const getCards = (baseUrl) => {
 export const addNewCard = ({ name, imageUrl, weather }, baseUrl, jwt) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    // headers
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${jwt}`,
     },
-    // Send the data in the body as a JSON string.
     body: JSON.stringify({
       name,
       imageUrl,
@@ -40,7 +38,6 @@ export const deleteCard = ({ baseUrl, jwt, id }) => {
     if (res.ok) {
       return res.json();
     }
-    // if the server returns an error, reject the promise
     return Promise.reject(`Error: ${res.status}`);
   });
 };
@@ -61,13 +58,11 @@ export const getCurrentUser = (baseUrl, jwt) => {
 export const editProfile = ({ name, avatar }, baseUrl, jwt) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
-    // headers
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${jwt}`,
     },
-    // Send the data in the body as a JSON string.
     body: JSON.stringify({
       name,
       avatar,
@@ -83,7 +78,6 @@ export const editProfile = ({ name, avatar }, baseUrl, jwt) => {
 export const addCardLike = (baseUrl, id, jwt) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
-    // headers
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -100,7 +94,6 @@ export const addCardLike = (baseUrl, id, jwt) => {
 export const removeCardLike = (baseUrl, id, jwt) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
-    // headers
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

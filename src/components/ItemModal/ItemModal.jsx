@@ -3,9 +3,9 @@ import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 function ItemModal({ isOpen, handleCloseClick, card, onRemoveItem }) {
-  const { currentUser } = useContext(CurrentTemperatureUnitContext);
+  const { currentUser, isLoggedIn } = useContext(CurrentTemperatureUnitContext);
 
-  const isOwn = card.owner === currentUser._id;
+  const isOwn = isLoggedIn && card.owner === currentUser._id;
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
