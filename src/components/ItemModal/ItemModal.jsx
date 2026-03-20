@@ -21,14 +21,16 @@ function ItemModal({ isOpen, handleCloseClick, card, onRemoveItem }) {
           <h2 className="modal__caption">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>
         </div>
-        <button
-          onClick={() => onRemoveItem(card)}
-          type="button"
-          className={`modal__button-delete ${isOwn ? "modal__button-delete_opened" : ""}`}
-          aria-label="delete card"
-        >
-          Delete item
-        </button>
+        {isOwn && (
+          <button
+            onClick={() => onRemoveItem(card)}
+            type="button"
+            className="modal__button-delete"
+            aria-label="delete card"
+          >
+            Delete item
+          </button>
+        )}
       </div>
     </div>
   );

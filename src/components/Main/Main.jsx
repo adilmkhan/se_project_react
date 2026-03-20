@@ -4,12 +4,13 @@ import "./Main.css";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
-function Main() {
+function Main({ onCardLike }) {
   const {
     currentTemperatureUnit,
     weatherData,
     clothingItems,
     handleCardClick,
+    currentUser,
   } = useContext(CurrentTemperatureUnitContext);
   return (
     <main>
@@ -28,11 +29,14 @@ function Main() {
               return item.weather === weatherData.type;
             })
             .map((item) => {
+              const isLiked = item.likes?.includes(currentUser._id) || false;
               return (
                 <ItemCard
                   key={item._id}
                   item={item}
                   onCardClick={handleCardClick}
+                  isLiked={isLiked}
+                  onCardLike={onCardLike}
                 />
               );
             })}

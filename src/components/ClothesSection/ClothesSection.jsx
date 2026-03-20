@@ -3,7 +3,7 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 
-export default function ClothesSection() {
+export default function ClothesSection({ onCardLike }) {
   const { handleAddClick, clothingItems, handleCardClick, currentUser } =
     useContext(CurrentTemperatureUnitContext);
   return (
@@ -21,11 +21,14 @@ export default function ClothesSection() {
               return item.owner === currentUser._id;
             })
             .map((item) => {
+              const isLiked = item.likes?.includes(currentUser._id) || false;
               return (
                 <ItemCard
                   key={item._id}
                   item={item}
                   onCardClick={handleCardClick}
+                  isLiked={isLiked}
+                  onCardLike={onCardLike}
                 />
               );
             })}

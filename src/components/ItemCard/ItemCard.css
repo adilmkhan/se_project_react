@@ -28,4 +28,33 @@
   white-space: nowrap;
   border-radius: 4px;
   padding: 2px 12px;
+  max-width: 88px;
+}
+
+.card__like-button {
+  background-image: url(../../assets/default_like_button.svg);
+  /* object-fit: cover; */
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  width: 18px;
+  height: 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 60px;
+}
+
+.card__like-button-liked {
+  background-image: url(../../assets/liked_button_new.svg);
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 18px;
+  height: 15px;
+  position: absolute;
+  border: none;
 }

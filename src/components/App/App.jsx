@@ -25,6 +25,8 @@ import {
   deleteCard,
   getCurrentUser,
   editProfile,
+  addCardLike,
+  removeCardLike,
 } from "../../utils/api.js";
 import * as auth from "../../utils/auth.js";
 import { setToken, getToken } from "../../utils/token.js";
@@ -73,8 +75,8 @@ function App() {
       baseUrl,
       jwt,
     )
-      .then((data) => {
-        setClothingItems((prev) => [data, ...prev]);
+      .then((res) => {
+        setClothingItems((prev) => [res.data, ...prev]);
         closeActiveModal();
       })
       .catch(console.error);
@@ -84,11 +86,10 @@ function App() {
     const jwt = getToken();
     deleteCard({ baseUrl, jwt, id: inputItems._id })
       .then(() => {
-        //TODO
+        closeActiveModal();
         setClothingItems(
           clothingItems.filter((item) => item._id !== inputItems._id),
         );
-        closeActiveModal();
         setSelectedCard({});
       })
       .catch(console.error);
@@ -206,6 +207,30 @@ function App() {
       .catch(console.error);
   };
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const jwt = getToken();
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        // the first argument is the card's id
+        addCardLike(baseUrl, id, jwt)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard.data : item)),
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        // the first argument is the card's id
+        removeCardLike(baseUrl, id, jwt)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard.data : item)),
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -261,6 +286,7 @@ function App() {
                   weatherData={weatherData}
                   clothingItems={clothingItems}
                   handleCardClick={handleCardClick}
+                  onCardLike={handleCardLike}
                 />
               }
             />
@@ -268,7 +294,7 @@ function App() {
               path="/profile"
               element={
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <Profile />
+                  <Profile onCardLike={handleCardLike} />
                 </ProtectedRoute>
               }
             />
