@@ -2,10 +2,13 @@ import "./ClothesSection.css";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 export default function ClothesSection({ onCardLike }) {
-  const { handleAddClick, clothingItems, handleCardClick, currentUser } =
-    useContext(CurrentTemperatureUnitContext);
+  const { handleAddClick, clothingItems, handleCardClick } = useContext(
+    CurrentTemperatureUnitContext,
+  );
+  const { currentUser } = useContext(CurrentUserContext);
   return (
     <div className="clothessection">
       <div className="clothessection__content">

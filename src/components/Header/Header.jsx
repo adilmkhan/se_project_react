@@ -3,7 +3,7 @@ import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,
@@ -11,7 +11,7 @@ function Header({
   handleRegisterClick,
   handleLoginClick,
 }) {
-  const { isLoggedIn, currentUser } = useContext(CurrentTemperatureUnitContext);
+  const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
 
   const firstInitial = currentUser?.name?.split("")[0] || "";
 

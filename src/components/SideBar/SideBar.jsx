@@ -1,14 +1,15 @@
 import "./SideBar.css";
 import { useNavigate } from "react-router-dom";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "../Header/Header.css";
 import { useContext } from "react";
 import { removeToken } from "../../utils/token";
 
 export default function SideBar() {
-  const { currentUser, handleEditProfileClick, setIsLoggedIn } = useContext(
-    CurrentTemperatureUnitContext,
-  );
+  const { handleEditProfileClick } = useContext(CurrentTemperatureUnitContext);
+
+  const { currentUser, setIsLoggedIn } = useContext(CurrentUserContext);
 
   const navigate = useNavigate();
 

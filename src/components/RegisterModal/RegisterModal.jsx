@@ -23,13 +23,13 @@ const RegisterModal = ({ isOpen, onSignup, handleCloseClick }) => {
       onSubmit={handleSignup}
       buttonText="Next"
     >
-      <label htmlFor="email" className="modal__form-label">
+      <label htmlFor="register-email" className="modal__form-label">
         Email{" "}
       </label>
       <input
         type="email"
         className="modal__form-input"
-        id="email"
+        id="register-email"
         name="email"
         placeholder="Email"
         required
@@ -38,13 +38,13 @@ const RegisterModal = ({ isOpen, onSignup, handleCloseClick }) => {
         value={values.email}
         onChange={handleChange}
       />
-      <label htmlFor="password" className="modal__form-label">
+      <label htmlFor="register-password" className="modal__form-label">
         Password{" "}
       </label>
       <input
         type="password"
         className="modal__form-input"
-        id="password"
+        id="register-password"
         name="password"
         placeholder="Password"
         required
@@ -53,13 +53,13 @@ const RegisterModal = ({ isOpen, onSignup, handleCloseClick }) => {
         value={values.password}
         onChange={handleChange}
       />
-      <label htmlFor="name" className="modal__form-label">
+      <label htmlFor="register-name" className="modal__form-label">
         Name{" "}
       </label>
       <input
         type="text"
         className="modal__form-input"
-        id="name"
+        id="register-name"
         name="name"
         placeholder="Name"
         required
@@ -68,13 +68,13 @@ const RegisterModal = ({ isOpen, onSignup, handleCloseClick }) => {
         value={values.name}
         onChange={handleChange}
       />
-      <label htmlFor="avatarURL" className="modal__form-label">
+      <label htmlFor="register-avatarURL" className="modal__form-label">
         Avatar Url{" "}
       </label>
       <input
         type="url"
         className="modal__form-input"
-        id="avatarURL"
+        id="register-avatarURL"
         name="avatarLink"
         placeholder="Avatar URL"
         required

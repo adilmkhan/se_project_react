@@ -1,7 +1,7 @@
 import { useForm } from "../../hooks/useForm.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import { useContext, useEffect } from "react";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
 const EditProfileModal = ({ isOpen, onEdit, handleCloseClick }) => {
   const defaultValues = {
@@ -10,7 +10,7 @@ const EditProfileModal = ({ isOpen, onEdit, handleCloseClick }) => {
   };
   const { values, handleChange, setValues } = useForm(defaultValues);
 
-  const { currentUser } = useContext(CurrentTemperatureUnitContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
     if (isOpen && currentUser) {

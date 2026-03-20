@@ -1,9 +1,9 @@
 import "./ItemModal.css";
 import { useContext } from "react";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ isOpen, handleCloseClick, card, onRemoveItem }) {
-  const { currentUser, isLoggedIn } = useContext(CurrentTemperatureUnitContext);
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
 
   const isOwn = isLoggedIn && card.owner === currentUser._id;
 

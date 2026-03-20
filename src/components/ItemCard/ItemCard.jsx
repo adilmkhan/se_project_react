@@ -1,13 +1,13 @@
 import "./ItemCard.css";
 import { useContext } from "react";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemCard({ item, onCardClick, isLiked, onCardLike }) {
   const handleLike = () => {
     onCardLike({ id: item._id, isLiked });
   };
 
-  const { isLoggedIn } = useContext(CurrentTemperatureUnitContext);
+  const { isLoggedIn } = useContext(CurrentUserContext);
   return (
     <li className="cards__item">
       <h2 className="cards__image-description">{item.name}</h2>
