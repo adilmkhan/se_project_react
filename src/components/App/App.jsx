@@ -132,7 +132,6 @@ function App() {
             {
               email: inputValues.email,
               password: inputValues.password,
-              updated,
             },
             baseUrl,
           )

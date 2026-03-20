@@ -24,7 +24,7 @@ function Header({
       <NavLink to="/">
         <img className="header__logo" src={logo} alt="WTWR logo" />
       </NavLink>
-      <p className="header__data-and-location">
+      <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
       </p>
       <ToggleSwitch />
