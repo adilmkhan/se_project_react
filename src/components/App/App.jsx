@@ -66,7 +66,13 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
-  const baseUrl = "http://localhost:3001";
+
+  const baseUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://api.wttowear.blinklab.com"
+      : "http://localhost:3001";
+
+  // const baseUrl = "http://localhost:3001";
 
   const onAddItem = (inputValues) => {
     const jwt = getToken();
